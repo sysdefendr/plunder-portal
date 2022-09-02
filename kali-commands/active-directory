@@ -1,0 +1,17 @@
+*Delete Local Account*
+crackmapexec smb -u $adm_username -p $adm_password -x "net user $test_username /DELETE" $target --local-auth
+
+*Disable Domain Account*
+crackmapexec smb -u $adm_username -p $adm_password -d $domain -x "net user $test_username /DELETE /DOMAIN" $target
+
+*Add user to "Domain Admins"*
+crackmapexec smb -u $adm_username -p $adm_password -d $domain -x "net group 'Domain Admins' $test_username  /ADD /DOMAIN" $target
+
+*Add user to local administrators*
+crackmapexec smb -u $adm_username -p $adm_password -x "net localgroup 'Administrators' $test_username  /ADD" $target --local-auth
+
+*Remove user from "Domain Admins"*
+crackmapexec smb -u $adm_username -p $adm_password -d $domain -x "net group 'Domain Admins' $test_username  /REMOVE /DOMAIN" $target
+
+*Remove user from local Administrators*
+crackmapexec smb -u $adm_username -p $adm_password -x "net localgroup 'Administrators' $test_username /REMOVE" $target --local-auth
