@@ -1,0 +1,2 @@
+Zone Transfer
+dnsrecon -d https://domain.com -t axfr
